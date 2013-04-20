@@ -1,0 +1,35 @@
+#!/bin/busybox sh
+
+mount -t proc none /proc
+mount -t sysfs none /sys
+mount -t devpts none -o gid=5,mode=0620	/dev/pts
+
+ln -s "../proc/mounts" /etc/mtab
+
+# populate /dev
+mknod /dev/tty c 5 0
+
+mdev -s
+
+echo 'root:x:0:0:root:/:/bin/bash' > /etc/passwd
+echo 'sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/bin/false' >> /etc/passwd
+echo 'root:x:0:' > /etc/group
+echo 'sshd:x:74:' >> /etc/group
+echo 'root:$1$$oCLuEVgI1iAqOA8pwkzAg1:12439:0:99999:7:::' > /etc/shadow
+echo 'sshd:*:11880:0:99999:7:-1:-1:0' >> /etc/shadow
+echo 'root:$1$$oCLuEVgI1iAqOA8pwkzAg1:12439:0:99999:7:::' > /etc/shadow-
+echo 'sshd:*:11880:0:99999:7:-1:-1:0' >> /etc/shadow-
+
+./poll_wlan.sh &
+./poll_lan.sh &
+./poll_ntp.sh &
+
+ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -P ""
+ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -P ""
+ssh-keygen -t ecdsa -f etc/ssh/ssh_host_ecdsa_key -P ""
+
+/usr/sbin/sshd
+
+hostname $(cat /etc/hostname)
+
+exec setsid sh -c 'exec /bin/getty 38400 tty1 </dev/tty1 >/dev/tty1 2>&1';

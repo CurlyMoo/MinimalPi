@@ -1,0 +1,20 @@
+#!/bin/bash
+
+function do_login() {
+	exec /bin/getty 38400 tty1 </dev/tty1 >/dev/tty1 2>&1
+}
+
+if [ "`id -u`" -eq 0 ]; then
+  PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+else
+  PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
+fi
+
+if [ "`id -u`" -eq 0 ]; then
+  PS1="\[\e[40;0m\]\u@$(cat /etc/hostname):\w# "
+else
+  PS1=$
+fi
+
+alias exit='do_login';
+alias logout='do_login';
