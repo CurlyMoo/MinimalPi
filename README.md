@@ -1,5 +1,12 @@
 MinimalPi
 =========
+Features:<br />
+1. Auto (W)LAN (re)connection<br />
+2. Bash
+3. SSH Server<br />
+4. NTP client auto set datetime on network access<br />
+5. Login prompt<br />
+6. MySQL client library<br />
 <br />
 Preparations:<br />
 1. A SD card of at least 16mb<br />
