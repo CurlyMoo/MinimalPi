@@ -7,10 +7,15 @@ Features:<br />
 4. NTP client auto set datetime on network access<br />
 5. Login prompt<br />
 6. MySQL client library<br />
+7. Samba client<br />
+8. PHP client<br />
+9. Hostname<br />
+10. Cron<br />
+11. Sendmail<br />
 <br />
 Preparations:<br />
-1. A SD card of at least 16mb<br />
-2. A single FAT partition of at least 16mb<br />
+1. A SD card of at least 32mb<br />
+2. A single FAT partition of at least 32mb<br />
 3. All files necessary for the RPi to boot: bootcode.bin, fixup.dat, start.elf, kernel.img, cmdline.txt and config.txt<br />
 4. The default login is root:root<br />
 <br />

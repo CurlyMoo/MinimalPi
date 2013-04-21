@@ -2,9 +2,12 @@
 while [ 1 ]; do
 	if [ -d "/sys/class/net/eth0" ]; then
 		if [ $(ifconfig | grep eth0 | wc -l) -eq 1 ]; then
-			if [ $(cat /sys/class/net/eth0/carrier) -eq 1 ]; then
+			if [ $(ps | grep "udhcpc -i eth0" | grep -v "grep" | wc -l) -gt 1 ]; then
+                                ps | grep "udhcpc -i eth0" | grep -v "grep" | awk '{print $1}' | xargs -n 1 kill
+			fi
+			if [ -f "/sys/class/net/eth0/carrier" ] && [ $(cat /sys/class/net/eth0/carrier) -eq 1 ]; then
 				if [ $(ifconfig | grep "eth0" -A 1 | grep "inet addr" | wc -l) -eq 0 ]; then
-				        udhcpc -i eth0 -s /etc/udhcpc/default.script -t 5 -T 5 -b
+				        udhcpc -i eth0 -s /etc/udhcpc/default.script -t 5 -T 5 -b -x "hostname:$(cat /etc/hostname)"
 				fi
 			fi
 		else
