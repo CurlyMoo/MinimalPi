@@ -15,7 +15,7 @@ insmod /lib/modules/3.6.11+/kernel/fs/cifs/cifs.ko
 insmod /lib/modules/3.6.11+/kernel/fs/nls/nls_utf8.ko
 isnmod /lib/modules/3.6.11+/crypto/ecb.ko
 
-echo 'root:x:0:0:root:/:/bin/bash' > /etc/passwd
+echo 'root:x:0:0:root:/root:/bin/bash' > /etc/passwd
 echo 'sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/bin/false' >> /etc/passwd
 echo 'root:x:0:' > /etc/group
 echo 'sshd:x:74:' >> /etc/group
