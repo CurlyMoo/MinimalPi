@@ -1,0 +1,1 @@
+../../../../share/pyshared/MySQLdb/__init__.py

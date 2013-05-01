@@ -1,0 +1,1 @@
+../../../share/pyshared/_mysql_exceptions.py

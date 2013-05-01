@@ -1,0 +1,1 @@
+../../../../../share/pyshared/MySQLdb/constants/CLIENT.py
