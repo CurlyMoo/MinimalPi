@@ -24,6 +24,9 @@ echo 'sshd:*:11880:0:99999:7:-1:-1:0' >> /etc/shadow
 echo 'root:$1$$oCLuEVgI1iAqOA8pwkzAg1:12439:0:99999:7:::' > /etc/shadow-
 echo 'sshd:*:11880:0:99999:7:-1:-1:0' >> /etc/shadow-
 
+export PYTHONPATH=/usr/lib/python2.6/
+export PYTHONHOME=/usr/lib/python2.6/
+
 ./poll_wlan.sh &
 ./poll_lan.sh &
 ./poll_ntp.sh &
