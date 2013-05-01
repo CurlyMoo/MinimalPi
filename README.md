@@ -13,6 +13,7 @@ Features:<br />
 10. Cron<br />
 11. Sendmail<br />
 12. Nano<br />
+13. Python2.6<br />
 <br />
 Preparations:<br />
 1. A SD card of at least 32mb<br />
