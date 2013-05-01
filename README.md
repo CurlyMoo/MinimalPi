@@ -55,6 +55,6 @@ cd MinimalPi
 ```
 1) Add your custom script you want to run and configure them<br />
 2) If you want to use wlan, set the right values in poll_wlan.sh<br />
-`find . | cpio -H newc -o | gzip -2v > ~/initramfs.gz`
+`find . | cpio -H newc -o | gzip -9v > ~/initramfs.gz`
 <br />
 Now put the newly created initramfs.gz on your SD card and boot
