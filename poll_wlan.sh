@@ -28,17 +28,10 @@ while [ 1 ]; do
 		else
 			ifconfig wlan0 up
 		fi
+	elif [ $(lsusb | grep "0bda:81[0-9]\{1,2\}" | wc -l) -ge 1 ]; then
+                modprobe 8192cu
         else
-                USBPORT=$(ls /sys/bus/usb/devices/*/idVendor | xargs grep "0bda" | cut -f1 -d:);
-                if [ ! -z $USBPORT ]; then
-                        if [ $(dirname $USBPORT | awk '{print $1"/idProduct"}' | xargs grep "81[0-9]\{1,2\}" | wc -l) -ge 1 ]; then
-                                modprobe -r 8192cu
-                                sleep 1;
-                                modprobe 8192cu
-                        else
-                                modprobe -r 8192cu
-                        fi
-                fi
+                modprobe -r 8192cu
         fi
 	sleep 1;
 done
