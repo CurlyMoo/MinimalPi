@@ -7,6 +7,20 @@ SSID="..."
 PASSWORD="..."
 
 while [ 1 ]; do
+        GW=$(route | grep default | awk '{print $2}');
+        if case $GW in
+                *[!.0-9]* | *.*.*.*.* | *..* | [!0-9]* | *[!0-9] ) false ;;
+                *25[6-9]* | *2[6-9][0-9]* | *[3-9][0-9][0-9]* | *[0-9][0-9][0-9][0-9]* ) false ;;
+                [!1-9].*.*.* | *.*.*.[!1-9] ) false ;;
+                *.*.*.* ) true ;;
+                *) false ;;
+        esac; then
+                if [ $(ping -W 1 -w 1 $GW | grep "100% packet loss" | wc -l) -eq 1 ]; then
+                        modprobe -r 8192cu
+                else
+                        sleep 3599;
+                fi
+        fi
 	if [ -d "/sys/class/net/wlan0/wireless" ]; then
 		if [ $(ifconfig | grep wlan0 | wc -l) -eq 1 ]; then
 			if [ $(pidof wpa_supplicant | sed -e 's/ /\n/g' | wc -l) -gt 1 ] || [ $(ps | grep "udhcpc -i wlan0" | grep -v "grep" | wc -l) -gt 1 ]; then
