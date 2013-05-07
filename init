@@ -39,4 +39,8 @@ ssh-keygen -t ecdsa -f etc/ssh/ssh_host_ecdsa_key -P ""
 
 hostname $(cat /etc/hostname)
 
+chown www-data:www-data /var/log/lighttpd/
+chmod -R 777 /tmp
+start-stop-daemon --start --oknodo --quiet --pidfile /var/run/lighttpd.pid --exec /usr/sbin/lighttpd -- -f /etc/lighttpd/lighttpd.conf
+
 exec setsid sh -c 'exec /bin/getty 38400 tty1 </dev/tty1 >/dev/tty1 2>&1';
