@@ -1,4 +1,5 @@
 kernel/fs/nls/nls_utf8.ko:
 kernel/fs/cifs/cifs.ko:
+kernel/crypto/md4.ko:
 kernel/crypto/ecb.ko:
 kernel/drivers/net/wireless/rtl8192cu/8192cu.ko:

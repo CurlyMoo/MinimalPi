@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "*** Usage of ifstatus is deprecated, use ifplugstatus instead! ***" > /dev/stderr
+exec /usr/sbin/ifplugstatus "$@"
+

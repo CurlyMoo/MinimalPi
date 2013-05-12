@@ -1,3 +1,3 @@
-#::sysinit:/etc/rcS
+::sysinit:/etc/init.d/rcS
 ::respawn:/sbin/getty 38400 tty1
-::respawn:/sbin/getty 38400 tty2
+::ctrlaltdel:/bin/reboot -f

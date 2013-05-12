@@ -1,0 +1,24 @@
+#! /bin/sh
+
+mount -t proc none /proc
+mount -t sysfs none /sys
+mount -t devpts none -o gid=5,mode=0620 /dev/pts
+
+test -e /etc/mtab && rm /etc/mtab
+ln -s "../proc/mounts" /etc/mtab
+
+mknod /dev/tty c 5 0
+
+echo /bin/mdev >/proc/sys/kernel/hotplug
+/bin/mdev -s
+
+# load kernel modules listed in /etc/modules
+if [ -r /etc/modules ]; then
+	while read mod; do
+		modprobe $mod
+	done </etc/modules
+fi
+
+chmod 777 /tmp
+
+exec /etc/init.d/rc S
