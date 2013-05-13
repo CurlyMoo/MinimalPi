@@ -1,13 +1,4 @@
-#!/bin/sh
-
-### BEGIN INIT INFO
-# Provides:        ntp
-# Required-Start:  $network $remote_fs $syslog
-# Required-Stop:   $network $remote_fs $syslog
-# Default-Start:   2 3 4 5
-# Default-Stop: 
-# Short-Description: Start NTP daemon
-### END INIT INFO
+#!/bin/bash
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
@@ -15,20 +6,30 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
 DAEMON=/bin/ntpd
 PIDFILE=/var/run/ntpd.pid
+SERVERS[0]="nl.pool.ntp.org"
+SERVERS[1]="de.pool.ntp.org"
+SERVERS[2]="be.pool.ntp.org"
+SERVERS[3]="lu.pool.ntp.org"
+I=0;
 
 test -x $DAEMON || exit 5
 
 case $1 in
 	start)
 		log_daemon_msg "Starting NTP server" "ntpd"
-		$( (while [ 1 ]; do
-			if [ $(ifconfig | grep "wlan0" -A 1 | grep "inet addr" | wc -l) -eq 1 ] || [ $(ifconfig | grep "eth0" -A 1 | grep "inet addr" | wc -l) -eq 1 ]; then
-	  			start-stop-daemon --start --quiet --oknodo --pidfile $PIDFILE --startas $DAEMON -- -p nl.pool.ntp.org
-				break;
-			fi
-			sleep 1;
-		done) &);
-		#log_end_msg $?
+		while [ $(date | grep -c 1970) -eq 1 ]; do
+			if [ $(ifconfig | grep "wlan0" -A 1 | grep -c "inet addr") -eq 1 ] || [ $(ifconfig | grep "eth0" -A 1 | grep -c "inet addr") -eq 1 ]; then
+				if [ $(pgrep ntpd | wc -l) -eq 0 ]; then
+			                $DAEMON -q -p ${SERVERS[$I]};
+			                I=$(($I+1));
+			                if [ $I -ge 4 ]; then
+			                        I=0;
+			                fi
+				fi
+		        fi
+		        sleep 1;
+		done &
+		log_end_msg $?
   		;;
 	stop)
 		log_daemon_msg "Stopping NTP server" "ntpd"

@@ -1,18 +1,4 @@
 #!/bin/sh
-### BEGIN INIT INFO
-# Provides:          lighttpd
-# Required-Start:    $syslog $remote_fs $network
-# Required-Stop:     $syslog $remote_fs $network
-# Should-Start:      fam
-# Should-Stop:       fam
-# Default-Start:     2 3 4 5
-# Default-Stop:      0 1 6
-# Short-Description: Start the lighttpd web server.
-# Description:       Fast and smalle webserver with minimal memory footprint
-#                    developed with security in mind HTTP/1.1 compliant caching
-#                    proxy server.
-### END INIT INFO
-
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/usr/sbin/lighttpd

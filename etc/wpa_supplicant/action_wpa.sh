@@ -25,12 +25,14 @@ PASSWD="xxxx"
 
 case "${2}" in
 	up)
-		pkill wpa_supplicant
-		ps -x | grep -v ps | grep "udhcpc -i wlan0" | grep -v grep | awk '{print $1}' | xargs -n 1 kill
-		iwconfig wlan0 essid $SSID
-                wpa_passphrase $SSID $PASSWD > /etc/wpa_supplicant.conf
-                wpa_supplicant -Dwext -iwlan0 -c /etc/wpa_supplicant.conf -B
-                udhcpc -i wlan0 -s /etc/udhcpc/default.script -t 5 -T 5 -b -x "hostname:$(cat /etc/hostname)"
+		ps -x | grep -v ps | grep "udhcpc -i $IFPLUGD_IFACE" | grep -v grep | awk '{print $1}' | xargs -n 1 kill
+		if [ $IFPLUGD_IFACE = "wlan0" ]; then
+			pkill wpa_supplicant
+			iwconfig $IFPLUGD_IFACE essid $SSID
+	                wpa_passphrase $SSID $PASSWD > /etc/wpa_supplicant.conf
+	                wpa_supplicant -Dwext -i$IFPLUGD_IFACE -c /etc/wpa_supplicant.conf -B
+		fi
+	        udhcpc -i $IFPLUGD_IFACE -s /etc/udhcpc/default.script -t 5 -T 5 -b -x "hostname:$(cat /etc/hostname)"
 		;;
 	down)
 		#COMMAND=reconnect

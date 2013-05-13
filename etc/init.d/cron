@@ -1,20 +1,4 @@
 #!/bin/sh
-# Start/stop the cron daemon.
-#
-### BEGIN INIT INFO
-# Provides:          cron
-# Required-Start:    $remote_fs $syslog $time
-# Required-Stop:     $remote_fs $syslog $time
-# Should-Start:      $network $named slapd autofs ypbind nscd nslcd
-# Should-Stop:       $network $named slapd autofs ypbind nscd nslcd
-# Default-Start:     2 3 4 5
-# Default-Stop:
-# Short-Description: Regular background program processing daemon
-# Description:       cron is a standard UNIX program that runs user-specified 
-#                    programs at periodic scheduled times. vixie cron adds a 
-#                    number of features to the basic UNIX cron, including better
-#                    security and more powerful configuration options.
-### END INIT INFO
 
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
 DESC="cron daemon"

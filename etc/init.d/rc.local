@@ -1,13 +1,4 @@
 #! /bin/sh
-### BEGIN INIT INFO
-# Provides:          rc.local
-# Required-Start:    $all
-# Required-Stop:
-# Default-Start:     2 3 4 5
-# Default-Stop:
-# Short-Description: Run /etc/rc.local if it exist
-### END INIT INFO
-
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
