@@ -61,3 +61,6 @@ alias usb:v0BDAp817Ed*dc*dsc*dp*ic*isc*ip*in* 8192cu
 alias usb:v0BDAp8170d*dc*dsc*dp*ic*isc*ip*in* 8192cu
 alias usb:v0BDAp8176d*dc*dsc*dp*ic*isc*ip*in* 8192cu
 alias usb:v0BDAp8191d*dc*dsc*dp*ic*isc*ip*in* 8192cu
+alias usb:v1A86p5523d*dc*dsc*dp*ic*isc*ip*in* ch341
+alias usb:v1A86p7523d*dc*dsc*dp*ic*isc*ip*in* ch341
+alias usb:v4348p5523d*dc*dsc*dp*ic*isc*ip*in* ch341

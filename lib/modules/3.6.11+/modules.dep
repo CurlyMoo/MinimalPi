@@ -3,3 +3,5 @@ kernel/fs/cifs/cifs.ko:
 kernel/crypto/md4.ko:
 kernel/crypto/ecb.ko:
 kernel/drivers/net/wireless/rtl8192cu/8192cu.ko:
+kernel/drivers/usb/serial/usbserial.ko:
+kernel/drivers/usb/serial/ch341.ko: kernel/drivers/usb/serial/usbserial.ko

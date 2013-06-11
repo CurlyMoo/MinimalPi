@@ -1,0 +1,63 @@
+#
+# sys		This is the file where you define all the remote
+#		UUCP systems you know about, whether you dial in to them
+#		or they dial in to you.
+#
+#		Note that if you want to dial into another system, you
+#		have to enter the loginname and password NOT here but
+#		in the file /etc/uucp/call.
+#
+
+#
+# First some defaults. These are for all other entries (unless overridden).
+#
+protocol gvG
+protocol-parameter G packet-size 1024
+# protocol-parameter G window 7
+protocol-parameter G short-packets
+
+#
+# Our remote uucp connection.
+#
+#system alphen
+#call-login *
+#call-password *
+#time any
+#phone 0172-419339
+#port ACU
+#chat "" \d\d\r\c ogin: \d\L word: \P
+
+#
+# This is an alternate - it means that if a connection using the
+# above "system alphen" fails it falls through to this entry. Only
+# useful if your service provider has more then one phone number for UUCP.
+#
+#alternate alphen-2
+#alias alphen-2
+#phone 0172-442580
+
+#
+# Here's another alternate - we poll the system over TCP/IP. This is
+# useful if we have a PPP connection to our provider. The first two entries
+# will fail because the modem is busy and we will poll over TCP/IP.
+#
+#
+#alternate alphen-tcp
+#alias alphen-tcp
+#time any
+#address uucp.cistron.nl
+#port TCP
+#protocol t
+
+#
+# Last example - a system that we poll over TCP/IP.
+#
+#system horizon
+#call-login *
+#call-password *
+#time any
+#chat "" \d\d\r\c ogin: \d\L word: \P
+#address uucp.horizon.nl
+#port TCP
+#protocol t
+

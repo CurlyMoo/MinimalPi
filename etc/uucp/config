@@ -1,0 +1,16 @@
+#
+# config	This is the configuration file for uucp. Most configurable
+#		things are commented out as they are the default (compiled
+#		in) setting. The only thing you might want to change is the
+#		"nodename". That's your UUCP system name - change it if it's
+#		different from your normal hostname.
+#
+
+#nodename	tester
+
+# Defaults.
+#sysfile	/etc/uucp/sys
+#portfile 	/etc/uucp/port
+#dialfile 	/etc/uucp/dial
+#callfile	/etc/uucp/call
+#passwdfile	/etc/uucp/passwd

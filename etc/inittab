@@ -1,3 +1,4 @@
 ::sysinit:/etc/init.d/rcS
 ::respawn:/sbin/getty 38400 tty1
+::respawn:/sbin/getty -L ttyAMA0 115200 vt100
 ::ctrlaltdel:/bin/reboot -f

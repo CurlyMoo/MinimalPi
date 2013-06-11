@@ -1,1 +1,22 @@
 # Aliases for symbols, used by symbol_request().
+alias symbol:usb_serial_suspend usbserial
+alias symbol:usb_serial_generic_submit_read_urbs usbserial
+alias symbol:usb_serial_port_softint usbserial
+alias symbol:usb_serial_resume usbserial
+alias symbol:usb_serial_generic_write usbserial
+alias symbol:usb_serial_generic_process_read_urb usbserial
+alias symbol:usb_serial_generic_read_bulk_callback usbserial
+alias symbol:usb_serial_generic_resume usbserial
+alias symbol:usb_serial_generic_unthrottle usbserial
+alias symbol:usb_serial_register_drivers usbserial
+alias symbol:usb_serial_generic_close usbserial
+alias symbol:usb_serial_handle_break usbserial
+alias symbol:usb_serial_handle_sysrq_char usbserial
+alias symbol:usb_serial_generic_throttle usbserial
+alias symbol:ezusb_writememory usbserial
+alias symbol:usb_serial_generic_open usbserial
+alias symbol:ezusb_set_reset usbserial
+alias symbol:usb_serial_deregister_drivers usbserial
+alias symbol:usb_serial_generic_disconnect usbserial
+alias symbol:usb_serial_generic_write_bulk_callback usbserial
+alias symbol:usb_serial_handle_dcd_change usbserial
