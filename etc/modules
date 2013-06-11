@@ -3,3 +3,5 @@ cifs
 nls_utf8
 ecb
 md4
+usbserial
+ch341
