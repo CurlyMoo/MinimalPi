@@ -53,8 +53,11 @@ cd ~
 git clone https://github.com/CurlyMoo/MinimalPi.git
 cd MinimalPi
 ```
-1) Add your custom script you want to run and configure them<br />
-2) If you want to use wlan, set the right values in poll_wlan.sh<br />
+1) Add your custom script you want to run and configure them either in:<br />
+`etc/init.d/`, `etc/rcS.d`, and `etc/init.d/.depend.boot`<br />
+or<br />
+`etc/rc.local`<br />
+2) If you want to use wlan, set the right values in `etc/wpa_supplicant/action_wpa.sh`<br />
 `find . | cpio -H newc -o | gzip -9v > ~/initramfs.gz`
 <br />
 Now put the newly created initramfs.gz on your SD card and boot
