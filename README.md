@@ -1,4 +1,4 @@
-RamPi
+MinimalPi
 =========
 Features:<br />
 1. Auto (W)LAN (re)connection<br />
