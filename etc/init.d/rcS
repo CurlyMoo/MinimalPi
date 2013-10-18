@@ -21,4 +21,8 @@ fi
 
 chmod 777 /tmp
 
+if [ $(cat /sys/class/net/eth0/carrier) -eq 1 ]; then
+        udhcpc -i eth0 -s /etc/udhcpc/default.script -t 5 -T 5 -b -x "hostname:$(cat /etc/hostname)"
+fi
+
 exec /etc/init.d/rc S
