@@ -20,7 +20,7 @@ case $1 in
 		while [ $(date | grep -c 1970) -eq 1 ]; do
 			if [ $(ifconfig | grep "wlan0" -A 1 | grep -c "inet addr") -eq 1 ] || [ $(ifconfig | grep "eth0" -A 1 | grep -c "inet addr") -eq 1 ]; then
 				if [ $(pgrep ntpd | wc -l) -eq 0 ]; then
-			                $DAEMON -q -p ${SERVERS[$I]};
+			                $DAEMON -q -p ${SERVERS[$I]} 2>/dev/null;
 			                I=$(($I+1));
 			                if [ $I -ge 4 ]; then
 			                        I=0;
