@@ -15,19 +15,29 @@ Features:<br />
 12. Nano<br />
 13. Python2.6<br />
 <br />
-Preparations:<br />
-1. A SD card of at least 32mb<br />
-2. A single FAT partition of at least 32mb<br />
-3. All files necessary for the RPi to boot: bootcode.bin, fixup.dat, start.elf, kernel.img, cmdline.txt and config.txt<br />
-4. The default login is root:root<br />
+Requirements:<br />
+A SD card of at least 32mb<br />
 <br />
-In order to make this work use ( / i used) the following files<br />
-<br />
-__kernel__
-<br />
+Step 1. Download the source when running e.g. Raspbian
+```
+cd ~
+git clone https://github.com/CurlyMoo/MinimalPi.git
+cd MinimalPi
+rm -r .git
+chmod 755 etc/init.d/rcS
+mkdir -p proc boot dev mnt sys tmp dev/pts var/log/lighthttpd var/spool/cron/crontabs
+```
+
+Step 2. Put the right values in `etc/wpa_supplicant/action_wpa.sh` when using wifi.
+
+Step 3. Run this command `find . | cpio -H newc -o | gzip -9v > ~/initramfs.gz`. 
+This will result in a OS image called `initramfs.gz`.
+
+Step 4.1 Format a `whole` SD card in fat32.<br />
+Step 4.2 Copy all files from the `boot/` partition including the `initramfs.gz` to the new SD card.<br />
+Step 4.3 Replace the kernel.img with this version:<br />
 https://raw.github.com/xbianonpi/xbian/fecfc22042ce4ea359c7c5450c588b9c7e57e4a0/boot/kernel.img<br />
-<br />
-__config.txt__
+Step 4.4 Replace the content of config.txt with this version:<br />
 ```
 initramfs initramfs.gz 0x00a00000
 sdtv_mode=2
@@ -39,25 +49,19 @@ overscan_top=20
 overscan_bottom=20
 disable_overscan=1
 gpu_mem_256=32
-gpu_mem_512=32 
+gpu_mem_512=32
 ```
-<br />
-__cmdline.txt__
+Step 4.5 Replace the content of the cmdline.txt with this version:<br />
 ```
-ip=:::::wlan0:dhcp dwc_otg.fiq_fix_enable=1 sdhci-bcm2708.sync_after_dma=0 dwc_otg.lpm_enable=0 console=tty1
+ip=:::::wlan0:dhcp ip=:::::eth0:dhcp dwc_otg.fiq_fix_enable=1 sdhci-bcm2708.sync_after_dma=0 dwc_otg.lpm_enable=0 console=tty1
 ```
-<br />
-__initramfs__
-```
-cd ~
-git clone https://github.com/CurlyMoo/MinimalPi.git
-cd MinimalPi
-```
+
+You can now boot MinimalPi
+
+Default login root:root
+
+===========
 1) Add your custom script you want to run and configure them either in:<br />
 `etc/init.d/`, `etc/rcS.d`, and `etc/init.d/.depend.boot`<br />
 or<br />
 `etc/rc.local`<br />
-2) If you want to use wlan, set the right values in `etc/wpa_supplicant/action_wpa.sh`<br />
-`find . | cpio -H newc -o | gzip -9v > ~/initramfs.gz`
-<br />
-Now put the newly created initramfs.gz on your SD card and boot
