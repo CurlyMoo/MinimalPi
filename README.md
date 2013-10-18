@@ -24,9 +24,10 @@ cd ~
 git clone https://github.com/CurlyMoo/MinimalPi.git
 cd MinimalPi
 rm -r .git
-mkdir -p proc boot dev mnt sys tmp dev/pts var/log/lighthttpd var/spool/cron/crontabs
+mkdir -p proc boot dev mnt sys tmp dev/pts var/log/lighthttpd var/cache/lighttpd/compress/ var/spool/cron/crontabs
 chmod 755 etc/init.d/rcS
 chmod 777 var/log/lighttpd/
+chmod 777 var/cache/lighttpd/compress/
 ```
 
 Step 2. Put the right values in `etc/wpa_supplicant/action_wpa.sh` when using wifi.
